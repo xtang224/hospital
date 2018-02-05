@@ -1,0 +1,3 @@
+/home/xtang/python_web/mysite2/hospital/static/hospital/landing.css
+/home/xtang/python_web/mysite2/hospital/static/hospital/style.css
+/home/xtang/python_web/mysite2/hospital/static/hospital/bootstrap.css

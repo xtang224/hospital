@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>八宝智能聊天</title>
+
+  <meta name="description" content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">	
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'chat/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'chat/bootstrap.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'chat/font-awesome.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'chat/plugin.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'chat/landing.css' %}">
+
+  <!--[if lt IE 9]>
+
+    <script src="{% static 'js/ie/respond.min.js' %}"></script>
+
+    <script src="{% static 'js/ie/html5.js' %}"></script>
+
+  <![endif]-->
+
+</head>
+
+<body>
+
+  <!-- header -->
+
+	<header id="header" class="navbar">
+
+    <ul class="nav navbar-nav navbar-avatar pull-right">
+
+      <li class="dropdown">
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+
+          <span class="hidden-sm-only">主页</span>
+
+          <span class="thumb-small avatar inline"><img src="{% static 'images/avatar.jpg' %}" alt="Mika Sokeil" class="img-circle"></span>
+
+          <b class="caret hidden-sm-only"></b>
+
+        </a>
+
+        <ul class="dropdown-menu">
+
+          <li><a href="indexAbout.html">关于我们</a></li>          
+
+          <li class="divider"></li>
+
+          <li><a href="docs.html">帮助</a></li>
+
+          <li><a href="login.html">退出</a></li>
+
+        </ul>
+
+      </li>
+
+    </ul>
+
+    <a class="navbar-brand" href="#">主页</a>
+
+    <button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+
+      <i class="icon-reorder icon-xlarge text-default"></i>
+
+    </button>
+
+    <ul class="nav navbar-nav hidden-sm">      
+
+    <form class="navbar-form pull-left shift" action="" data-toggle="shift:appendTo" data-target=".nav-primary">
+
+      <i class="icon-search text-muted"></i>
+
+      <input type="text" class="input-small form-control" placeholder="Search">
+
+    </form>
+
+	</header>
+
+  <!-- / header -->
+
+  <!-- nav -->
+
+  <nav id="nav" class="nav-primary visible-lg nav-vertical">
+
+    <ul class="nav" data-spy="affix" data-offset-top="50">      
+
+    </ul>
+
+  </nav>
+
+  <!-- / nav -->
+
+  <section id="content">
+
+    <section class="main padder">
+
+      <div class="row">
+
+        <div class="col-lg-12">        
+
+        </div>
+
+        <div class="col-lg-6">       
+
+        </div>
+
+        <div class="col-lg-6">         
+
+          <!-- sparkline stats end -->
+
+        </div>        
+
+      </div>
+
+      <div class="row">
+
+        <section class="panel panel-large arrow arrow-top">
+              <header class="panel-heading bg-white"><span class="h5"><strong>请在这里输入你的聊天内容</strong></span></header>
+              <FORM NAME=form1 action="{% url 'chat:ask' %}" method="get" class="padder">
+                 <TABLE BORDER=0>
+                   <TR>
+                     <TD>回答:</TD>
+                     <TD>{{reply}}</TD>
+                   </TR>
+                   <TR>
+                     <TD>提问:</TD>
+                     <TD><TextArea NAME="dialogue_question" WIDTH="400" HEIGHT="80"></TextArea></TD>
+                   </TR>
+                   <TR>
+                     <TD><input type="hidden" name="dialogue_bid" value="0"><input type="hidden" name="dialogue_uid" value="0"><input type="hidden" name="idTab" value="0"><input type="hidden" name="dialogue_user_phone" value="{{phone}}"><input type="hidden" name="dialogue_reply" value=""></TD>
+                     <TD align=center><INPUT TYPE="Submit" VALUE="提交你的问题">&nbsp;&nbsp;
+                         <INPUT TYPE="Reset" VALUE="重置"></TD>
+                   </TR>
+                 </TABLE>
+               </FORM>
+        </section>
+        <section class="panel panel-large arrow arrow-top">
+              <header class="panel-heading bg-white"><span class="h5"><strong>请在这里输入你自己认为你上一个问题的最满意答案</strong></span></header>
+              <FORM NAME=form1 action="{% url 'chat:ask' %}" method="get" class="padder">
+                 <TABLE BORDER=0>
+                   <TR>
+                     <TD>你最满意的回答:</TD>
+                     <TD><TextArea NAME="dialogue_reply" WIDTH="400" HEIGHT="80"></TextArea></TD>
+                   </TR>
+                   <TR>
+                     <TD>提问:</TD>
+                     <TD></TD>
+                   </TR>
+                   <TR>
+                     <TD><input type="hidden" name="dialogue_bid" value="0"><input type="hidden" name="dialogue_uid" value="0"><input type="hidden" name="idTab" value="1"><input type="hidden" name="dialogue_user_phone" value="{{phone}}"><input type="hidden" name="dialogue_question" value=""></TD>
+                     <TD align=center><INPUT TYPE="Submit" VALUE="提交你的最满意的回答">&nbsp;&nbsp;
+                         <INPUT TYPE="Reset" VALUE="重置"></TD>
+                   </TR>
+                 </TABLE>
+               </FORM>
+        </section>
+
+      </div>
+
+    </section>
+
+  </section>
+
+  <!-- .modal -->
+
+  <div id="modal" class="modal fade">
+
+    <form class="m-b-none">
+
+      <div class="modal-dialog pos-abt" style="margin-top:-235px; top:50%">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+
+            <h4 class="modal-title" id="myModalLabel">Post your first idea</h4>
+
+          </div>
+
+          <div class="modal-body">          
+
+            <div class="block">
+
+              <label class="control-label">Title</label>
+
+              <input type="text" class="form-control" placeholder="Post title">
+
+            </div>
+
+            <div class="block">
+
+              <label class="control-label">Content</label>
+
+              <textarea class="form-control" placeholder="Content" rows="5"></textarea>
+
+            </div>
+
+            <div class="checkbox">
+
+              <label>
+
+                <input type="checkbox"> Share with all memebers of first
+
+              </label>
+
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-small btn-default" data-dismiss="modal">Save</button>
+
+            <button type="button" class="btn btn-small btn-primary" data-loading-text="Publishing...">Publish</button>
+
+          </div>
+
+        </div><!-- /.modal-content -->
+
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- / .modal -->
+
+  <!-- footer -->
+
+  <footer id="footer">
+
+    <div class="text-center padder clearfix">
+
+      <p>
+
+        <small>&copy; 本页面用Bootstrap框架搭建</small><br><br>
+
+      </p>
+
+    </div>
+
+  </footer>
+
+  <a href="#" class="hide slide-nav-block" data-toggle="class:slide-nav slide-nav-left" data-target="body"></a>
+
+
+
+</body>
+
+</html>
